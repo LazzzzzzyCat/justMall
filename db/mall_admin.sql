@@ -879,7 +879,7 @@ CREATE TABLE `undo_log`  (
   `branch_id` bigint(20) NOT NULL,
   `xid` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `context` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `rollback_info` String NOT NULL,
+  `rollback_info` longblob NOT NULL,
   `log_status` int(11) NOT NULL,
   `log_created` datetime(0) NOT NULL,
   `log_modified` datetime(0) NOT NULL,
