@@ -1,0 +1,14 @@
+server:
+  port: 11000
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.6.189:3306/mall_wms?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+  mapper-locations: classpath:/mapper/**/*.xml
