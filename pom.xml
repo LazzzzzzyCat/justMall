@@ -17,8 +17,11 @@
         <module>justmall-product</module>
         <module>justmall-order</module>
         <module>justmall-common</module>
+        <module>justmall-gateway</module>
         <module>renren-fast</module>
         <module>renren-generator</module>
+        <module>justmall-third-party</module>
+        <module>justmall-search</module>
     </modules>
 
 </project>

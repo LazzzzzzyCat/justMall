@@ -1,0 +1,58 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+      - id: baiduRoutes
+        uri: http://www.baidu.com
+        predicates:
+        - Query=url,baidu
+
+      - id: qqRoutes
+        uri: http://www.qq.com
+        predicates:
+        - Query=url,qq
+        
+      - id: product_route
+        uri: lb://justmall-product
+        predicates:
+          - Path=/api/product/**
+        filters:
+          - RewritePath=/api/(?<segment>.*),/$\{segment}
+            
+      - id: justmall-ware
+        uri: lb://justmall-ware
+        predicates:
+          - Path=/api/ware/**
+        filters:
+          - RewritePath=/api/(?<segment>.*),/$\{segment}
+              
+      - id: justmall-coupon
+        uri: lb://justmall-coupon
+        predicates:
+          - Path=/api/coupon/**
+        filters:
+          - RewritePath=/api/(?<segment>.*),/$\{segment}
+          
+      - id: justmall-member
+        uri: lb://justmall-member
+        predicates:
+          - Path=/api/member/**
+        filters:
+          - RewritePath=/api/(?<segment>.*),/$\{segment}
+            
+      - id: justmall-third-party
+        uri: lb://justmall-third-party
+        predicates:
+          - Path=/api/thirdparty/**
+        filters:
+          - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+      - id: adminRotes
+        uri: lb://renren-fast
+        predicates:
+          - Path=/api/**
+        filters:
+          - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}

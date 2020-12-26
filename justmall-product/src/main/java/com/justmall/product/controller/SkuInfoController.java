@@ -4,11 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.justmall.product.entity.SkuInfoEntity;
 import com.justmall.product.service.SkuInfoService;
@@ -29,6 +25,15 @@ import com.justmall.common.utils.R;
 public class SkuInfoController {
     @Autowired
     private SkuInfoService skuInfoService;
+
+    /**
+     * 远程调用查询名字
+     */
+    @GetMapping("/getSkuName")
+    public String getSkuName(@RequestParam Long skuId) {
+        SkuInfoEntity byId = skuInfoService.getById(skuId);
+        return byId.getSkuName();
+    }
 
     /**
      * 列表

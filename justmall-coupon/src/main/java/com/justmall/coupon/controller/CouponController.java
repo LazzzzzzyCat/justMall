@@ -1,14 +1,13 @@
 package com.justmall.coupon.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.*;
 
 import com.justmall.coupon.entity.CouponEntity;
 import com.justmall.coupon.service.CouponService;
@@ -24,11 +23,39 @@ import com.justmall.common.utils.R;
  * @email 470661893@qq.com
  * @date 2020-12-20 10:50:01
  */
+@RefreshScope
 @RestController
 @RequestMapping("counpon/coupon")
 public class CouponController {
     @Autowired
     private CouponService couponService;
+
+    @Value("${coupon.user.name}")
+    private String name;
+    @Value("${coupon.user.age}")
+    private Integer age;
+
+    /**
+     * 配置中心测试
+     * @return
+     */
+    @RequestMapping("configTest")
+    public R configTest(){
+        return R.ok().put("name", name).put("sex", age);
+    }
+
+    /**
+     * fegin 测试
+     * @return
+     */
+    @RequestMapping("member/list")
+    public R memberCoupons(){
+        CouponEntity couponEntity = new CouponEntity();
+        couponEntity.setCouponName("会员");
+        ArrayList<CouponEntity> objects = new ArrayList<>();
+        objects.add(couponEntity);
+        return R.ok().put("coupons", objects);
+    }
 
     /**
      * 列表

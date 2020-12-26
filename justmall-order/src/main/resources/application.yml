@@ -6,6 +6,12 @@ spring:
     password: 123456
     url: jdbc:mysql://192.168.6.189:3306/mall_oms?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE
     driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: justmall-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 
 mybatis-plus:
   global-config:

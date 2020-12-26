@@ -3,6 +3,7 @@ package com.justmall.member.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.justmall.member.feign.CouponFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +30,13 @@ import com.justmall.common.utils.R;
 public class UmsMemberController {
     @Autowired
     private UmsMemberService umsMemberService;
+    @Autowired
+    private CouponFeignService couponFeignService;
+
+    @RequestMapping("coupons")
+    public R test(){
+        return couponFeignService.memberCoupons();
+    }
 
     /**
      * 列表

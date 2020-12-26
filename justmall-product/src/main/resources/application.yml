@@ -6,9 +6,26 @@ spring:
     password: 123456
     url: jdbc:mysql://192.168.6.189:3306/mall_pms?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE
     driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: justmall-product
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 
 mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
   mapper-locations: classpath:/mapper/**/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+justmall:
+  thread:
+    core-size: 20
+    max-size: 200
+    keep-alive-time: 10

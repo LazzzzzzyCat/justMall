@@ -1,14 +1,11 @@
 package com.justmall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.justmall.product.entity.CategoryEntity;
 import com.justmall.product.service.CategoryService;
@@ -29,6 +26,15 @@ import com.justmall.common.utils.R;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
+    /**
+     * 查出所有分类和子分类列表 以树型结构组成
+     */
+    @GetMapping("/list/tree")
+    public R list() {
+        List<CategoryEntity> categoryEntities = categoryService.listWithTree();
+        return R.ok().put("data", categoryEntities);
+    }
 
     /**
      * 列表
